@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatorio AMS | 01/04 a 10/04</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&display=swap");
+
+      :root {
+        --bg: #060816;
+        --bg-soft: #0d1226;
+        --panel: rgba(255, 255, 255, 0.05);
+        --panel-strong: rgba(255, 255, 255, 0.08);
+        --border: rgba(255, 255, 255, 0.1);
+        --text: rgba(255, 255, 255, 0.86);
+        --muted: rgba(255, 255, 255, 0.58);
+        --blue: #5ea2ff;
+        --pink: #ff5fd7;
+        --cyan: #62f1ff;
+        --green: #42d392;
+        --yellow: #f5c76c;
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(94, 162, 255, 0.18), transparent 28%),
+          radial-gradient(circle at bottom left, rgba(255, 95, 215, 0.16), transparent 30%),
+          linear-gradient(180deg, #05070f 0%, #09111f 100%);
+      }
+
+      .page {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 40px 0 64px;
+      }
+
+      .nav,
+      .hero,
+      .card,
+      .table-card {
+        border: 1px solid var(--border);
+        background: var(--panel);
+        backdrop-filter: blur(18px);
+        box-shadow: var(--shadow);
+      }
+
+      .nav {
+        border-radius: 28px;
+        padding: 20px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 28px;
+      }
+
+      .logo {
+        font-family: "Syne", sans-serif;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.06em;
+      }
+
+      .logo span {
+        color: var(--pink);
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 14px rgba(66, 211, 146, 0.65);
+      }
+
+      .hero {
+        border-radius: 36px;
+        padding: 38px;
+        margin-bottom: 24px;
+      }
+
+      .eyebrow {
+        color: var(--blue);
+        font-size: 11px;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: "Syne", sans-serif;
+        letter-spacing: -0.05em;
+      }
+
+      h1 {
+        font-size: clamp(42px, 7vw, 82px);
+        line-height: 0.95;
+        margin-bottom: 18px;
+      }
+
+      h2 {
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        font-size: 22px;
+      }
+
+      .accent {
+        background: linear-gradient(90deg, var(--blue), var(--pink));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .lead {
+        max-width: 760px;
+        font-size: 18px;
+        line-height: 1.65;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .grid.metrics {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-bottom: 24px;
+      }
+
+      .grid.two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-bottom: 24px;
+      }
+
+      .card {
+        border-radius: 28px;
+        padding: 26px;
+      }
+
+      .label {
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 11px;
+        margin-bottom: 12px;
+      }
+
+      .value {
+        font-size: clamp(28px, 4vw, 42px);
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+
+      .sub {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .compare-row {
+        margin-top: 18px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .bar-label {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+
+      .bar-track {
+        height: 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        overflow: hidden;
+      }
+
+      .bar-fill {
+        height: 100%;
+        border-radius: 999px;
+      }
+
+      .blue {
+        background: linear-gradient(90deg, #5ea2ff, #62f1ff);
+      }
+
+      .pink {
+        background: linear-gradient(90deg, #ff5fd7, #ff9fec);
+      }
+
+      .green {
+        background: linear-gradient(90deg, #42d392, #7ef0b9);
+      }
+
+      .table-card {
+        border-radius: 28px;
+        padding: 26px;
+        overflow: hidden;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 14px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 14px;
+        vertical-align: top;
+      }
+
+      th {
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 11px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        font-size: 12px;
+        color: var(--text);
+      }
+
+      .insights {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .foot {
+        margin-top: 28px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      @media (max-width: 980px) {
+        .grid.metrics,
+        .grid.two,
+        .insights {
+          grid-template-columns: 1fr;
+        }
+
+        .hero,
+        .card,
+        .table-card,
+        .nav {
+          padding: 22px;
+          border-radius: 24px;
+        }
+
+        th:nth-child(3),
+        td:nth-child(3),
+        th:nth-child(4),
+        td:nth-child(4) {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="nav">
+        <div class="logo">Flow<span>.</span></div>
+        <div class="tag"><span class="dot"></span> Relatorio AMS | 01/04 a 10/04</div>
+      </div>
+
+      <section class="hero">
+        <div class="eyebrow">Google Ads | relatorio de desempenho</div>
+        <h1>Como a campanha da <span class="accent">AMS</span> se comportou neste periodo</h1>
+        <p class="lead">
+          Este relatorio resume o desempenho da campanha de forma objetiva e facil de acompanhar.
+          O foco aqui e responder tres perguntas centrais: <strong>a campanha ganhou visibilidade?</strong>,
+          <strong>despertou interesse?</strong> e <strong>isso se transformou em contatos com eficiencia?</strong>
+        </p>
+      </section>
+
+      <section class="grid metrics">
+        <article class="card">
+          <div class="label">Visibilidade</div>
+          <div class="value">1.318</div>
+          <div class="sub">vezes em que os anuncios apareceram no Google</div>
+        </article>
+        <article class="card">
+          <div class="label">Interesse</div>
+          <div class="value">56</div>
+          <div class="sub">cliques totais nos anuncios no periodo</div>
+        </article>
+        <article class="card">
+          <div class="label">Investimento</div>
+          <div class="value">R$ 256,11</div>
+          <div class="sub">valor total gasto entre 01/04 e 10/04/2026</div>
+        </article>
+        <article class="card">
+          <div class="label">Resultado Real</div>
+          <div class="value">3</div>
+          <div class="sub">contatos reais reportados pelo time comercial</div>
+        </article>
+      </section>
+
+      <section class="grid two">
+        <article class="card">
+          <div class="label">Leitura do Google</div>
+          <div class="value">5 conversoes</div>
+          <div class="sub">
+            O Google Ads marcou 5 conversoes no periodo. Isso e util para otimizar campanha,
+            mas nao significa automaticamente 5 conversas qualificadas no comercial.
+          </div>
+        </article>
+        <article class="card">
+          <div class="label">Leitura do Comercial</div>
+          <div class="value">3 contatos | 0 vendas</div>
+          <div class="sub">
+            Este e o numero que mais importa para decisao de negocio: 3 contatos reais
+            recebidos e nenhum fechamento confirmado ate agora.
+          </div>
+        </article>
+      </section>
+
+      <section class="grid two">
+        <article class="card">
+          <div class="label">Campanha Residencial | B2C</div>
+          <h3>Mais volume, menos eficiencia</h3>
+          <p class="sub" style="margin-top: 10px">
+            Essa e a campanha voltada para consumidor final, com foco em cortinas, persianas,
+            wave, blackout e tela solar.
+          </p>
+          <div class="compare-row">
+            <div>
+              <div class="bar-label"><span>Impressões</span><strong>483</strong></div>
+              <div class="bar-track"><div class="bar-fill pink" style="width: 57.84%"></div></div>
+            </div>
+            <div>
+              <div class="bar-label"><span>Cliques</span><strong>41</strong></div>
+              <div class="bar-track"><div class="bar-fill pink" style="width: 100%"></div></div>
+            </div>
+            <div>
+              <div class="bar-label"><span>Gasto</span><strong>R$ 179,55</strong></div>
+              <div class="bar-track"><div class="bar-fill pink" style="width: 100%"></div></div>
+            </div>
+            <div>
+              <div class="bar-label"><span>Conversões</span><strong>1</strong></div>
+              <div class="bar-track"><div class="bar-fill pink" style="width: 25%"></div></div>
+            </div>
+          </div>
+          <p class="foot">
+            A campanha residencial chama mais atencao e gera mais clique,
+            mas ainda esta trazendo pouco resultado proporcional ao valor investido e nao gerou venda.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="label">Campanha Corporativa | B2B</div>
+          <h3>Menos volume, mais qualidade</h3>
+          <p class="sub" style="margin-top: 10px">
+            Essa e a campanha voltada para hospitais, clinicas e demandas tecnicas,
+            com foco em piso hospitalar e busca mais qualificada.
+          </p>
+          <div class="compare-row">
+            <div>
+              <div class="bar-label"><span>Impressões</span><strong>835</strong></div>
+              <div class="bar-track"><div class="bar-fill blue" style="width: 100%"></div></div>
+            </div>
+            <div>
+              <div class="bar-label"><span>Cliques</span><strong>15</strong></div>
+              <div class="bar-track"><div class="bar-fill blue" style="width: 36.59%"></div></div>
+            </div>
+            <div>
+              <div class="bar-label"><span>Gasto</span><strong>R$ 76,56</strong></div>
+              <div class="bar-track"><div class="bar-fill blue" style="width: 42.64%"></div></div>
+            </div>
+            <div>
+              <div class="bar-label"><span>Conversões</span><strong>4</strong></div>
+              <div class="bar-track"><div class="bar-fill blue" style="width: 100%"></div></div>
+            </div>
+          </div>
+          <p class="foot">
+            A campanha corporativa recebe menos clique, mas quando atrai o publico certo,
+            converte melhor dentro do Google. Mesmo assim, ate agora isso ainda nao virou fechamento real.
+          </p>
+        </article>
+      </section>
+
+      <section class="table-card">
+        <div class="label">Comparacao rapida</div>
+        <h2>B2C x B2B sem termo tecnico</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Campanha</th>
+              <th>Resumo</th>
+              <th>Investimento</th>
+              <th>Conversoes Google</th>
+              <th>Leitura</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="pill">B2C Residencial</span></td>
+              <td>483 aparicoes e 41 cliques</td>
+              <td>R$ 179,55</td>
+              <td>1</td>
+              <td>Boa em chamar atencao, fraca em transformar isso em contato qualificado e venda.</td>
+            </tr>
+            <tr>
+              <td><span class="pill">B2B Corporativo</span></td>
+              <td>835 aparicoes e 15 cliques</td>
+              <td>R$ 76,56</td>
+              <td>4</td>
+              <td>Menos clique, mais eficiencia no Google, mas ainda sem fechamento comercial.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="insights">
+        <article class="card">
+          <div class="label">O que mais importa</div>
+          <h3>Hoje a B2B e mais eficiente</h3>
+          <ul>
+            <li>Gastou menos que a B2C no periodo.</li>
+            <li>Gerou 4 das 5 conversoes registradas pelo Google.</li>
+            <li>Tem intencao de busca mais forte e mais tecnica.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="label">Ponto de atencao</div>
+          <h3>A B2C ainda precisa ajuste</h3>
+          <ul>
+            <li>Consegue clique com facilidade.</li>
+            <li>Mas ainda converte pouco perto do gasto.</li>
+            <li>Isso indica necessidade de melhorar qualificacao, pagina e filtro comercial.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="label">Sobre hoje | 10/04</div>
+          <h3>Por que a B2B nao gastou</h3>
+          <ul>
+            <li>A campanha nao esta travada: ela esta ativa e servindo.</li>
+            <li>Ela teve 4 impressões hoje, mas 0 cliques.</li>
+            <li>Sem clique, nao existe custo.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="card" style="margin-top: 24px">
+        <div class="label">Conclusao executiva</div>
+        <h2>O que esse resultado quer dizer na pratica</h2>
+        <p class="sub">
+          O Google mostra sinal de interesse e algum nivel de conversao tecnica, principalmente na campanha B2B.
+          Mas o resultado que vale para negocio ainda esta fraco: <strong>3 contatos reais e 0 vendas</strong>.
+          Isso indica que a campanha ainda precisa ser avaliada nao so por clique e conversao do Google,
+          mas pela qualidade do lead que chega no atendimento.
+        </p>
+      </section>
+
+      <section class="table-card" style="margin-top: 24px">
+        <div class="label">Linha do tempo</div>
+        <h2>Dia a dia do periodo</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Campanha</th>
+              <th>Impressões</th>
+              <th>Cliques</th>
+              <th>Gasto</th>
+              <th>Conversões</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>01/04</td><td>B2C Residencial</td><td>14</td><td>2</td><td>R$ 10,43</td><td>0</td></tr>
+            <tr><td>02/04</td><td>B2C Residencial</td><td>36</td><td>1</td><td>R$ 4,48</td><td>0</td></tr>
+            <tr><td>06/04</td><td>B2B Corporativo</td><td>2</td><td>0</td><td>R$ 0,00</td><td>0</td></tr>
+            <tr><td>06/04</td><td>B2C Residencial</td><td>38</td><td>2</td><td>R$ 9,15</td><td>0</td></tr>
+            <tr><td>07/04</td><td>B2B Corporativo</td><td>7</td><td>3</td><td>R$ 21,73</td><td>1</td></tr>
+            <tr><td>07/04</td><td>B2C Residencial</td><td>104</td><td>9</td><td>R$ 40,54</td><td>1</td></tr>
+            <tr><td>08/04</td><td>B2B Corporativo</td><td>18</td><td>1</td><td>R$ 6,02</td><td>1</td></tr>
+            <tr><td>08/04</td><td>B2C Residencial</td><td>131</td><td>9</td><td>R$ 37,76</td><td>0</td></tr>
+            <tr><td>09/04</td><td>B2B Corporativo</td><td>804</td><td>11</td><td>R$ 48,81</td><td>2</td></tr>
+            <tr><td>09/04</td><td>B2C Residencial</td><td>110</td><td>10</td><td>R$ 44,62</td><td>0</td></tr>
+            <tr><td>10/04</td><td>B2B Corporativo</td><td>4</td><td>0</td><td>R$ 0,00</td><td>0</td></tr>
+            <tr><td>10/04</td><td>B2C Residencial</td><td>50</td><td>8</td><td>R$ 32,57</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card" style="margin-top: 24px">
+        <div class="label">Termo tecnico traduzido</div>
+        <h2>O que significa “parcela de impressões”</h2>
+        <p class="sub">
+          Esse nome correto e <strong>parcela de impressões de pesquisa</strong>. Em portugues simples,
+          significa <strong>de todas as vezes em que a campanha poderia aparecer, em quantas ela realmente apareceu</strong>.
+          Hoje, tanto B2C quanto B2B estao em torno de <strong>9,99%</strong>, com <strong>0% de perda por orçamento</strong>
+          e cerca de <strong>90,01% de perda por rank</strong>.
+        </p>
+        <p class="foot">
+          Traduzindo: o problema de hoje nao e falta de verba. O principal motivo para perder impressões e o anuncio
+          nao estar forte o bastante no leilao, seja por concorrencia, relevancia ou qualidade/rank.
+        </p>
+      </section>
+    </div>
+  </body>
+</html>
